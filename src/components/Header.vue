@@ -2,15 +2,10 @@
   <nav>
     <v-app-bar app flat>
       <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-lg-and-up"></v-app-bar-nav-icon>
-      <v-toolbar-title class="text-uppercase hidden-lg-and-up grey--text">
+      <v-toolbar-title class="text-uppercase hidden-lg-and-up grey--text mx-auto">
         <span>Sumedh</span>
         <span class="font-weight-light">Frieght</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn text color="grey">
-        <span>sign out</span>
-        <v-icon right>mdi-exit-to-app</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" app class="primary">
@@ -49,6 +44,7 @@
     links: [
       { text: 'All Enterprises', icon: 'mdi-domain', route: '/' },
       { text: 'Chalans', icon: 'mdi-notebook', route: '/challans' },
+      { text: 'Sign Out', icon: 'mdi-exit-to-app', route: '/' },
     ],
   }),
 }

@@ -7,6 +7,16 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
     enterprises: enterprisesModule
+  },
+  state() {
+    return {
+      userId: 'c6'
+    }
+  },
+  getters: {
+    userId(state) {
+      return state.userId;
+    }
   }
 })
 

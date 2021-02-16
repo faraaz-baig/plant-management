@@ -13,7 +13,7 @@ const routes = [
   
   { path: '/', redirect: '/enterprises' },
   { path: '/enterprises', component: EnterpriseList },
-  { path: '/enterprises/:id', component: EnterpriseDetail, children: [
+  { path: '/enterprises/:id', component: EnterpriseDetail, props: true, children: [
     { path: 'make-challans', component: MakeChallans }
   ]},
   { path: '/register', component: EnterpriseRegistration },
