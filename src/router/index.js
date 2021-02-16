@@ -1,23 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import ChallansRecieved from '@/pages/challans/ChallansRecieved'
+import MakeChallans from '@/pages/challans/MakeChallans'
+import EnterpriseDetail from '@/pages/enterprises/EnterpriseDetail'
+import EnterpriseRegistration from '@/pages/enterprises/EnterpriseRegisteration'
+import EnterpriseList from '@/pages/enterprises/EnterpriseList'
+import NotFound from '@/pages/NotFound'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  
+  { path: '/', redirect: '/enterprises' },
+  { path: '/enterprises', component: EnterpriseList },
+  { path: '/enterprises/:id', component: EnterpriseDetail, children: [
+    { path: 'make-challans', component: MakeChallans }
+  ]},
+  { path: '/register', component: EnterpriseRegistration },
+  { path: '/challans', component: ChallansRecieved },
+  { path: '/:notFound(.*)', component: NotFound },
+  
 ]
 
 const router = new VueRouter({
