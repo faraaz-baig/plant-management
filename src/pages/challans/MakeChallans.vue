@@ -101,7 +101,7 @@
             plateNumber: this.plateNumber,
             trips: this.trips,
             date: this.date,
-            challanId: this.$route.id
+            enterpriseId: this.$route.params.id
           }
           this.$store.dispatch('challans/makeChallan', chalan)
           this.$router.replace('/enterprises')
