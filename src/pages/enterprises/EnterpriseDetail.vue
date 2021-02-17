@@ -3,7 +3,7 @@
         <v-container>
             <v-row align="center">
                 <v-col cols="10" class="mx-auto">
-                    <v-card class="pa-4" color="#EEEEEE">
+                    <v-card outlined class="pa-4" color="#EEEEEE">
                         <v-card-title class="headline text-h5 font-weight-bold">
                             {{ name }}
                         </v-card-title>
@@ -17,6 +17,9 @@
                 </v-col>
             </v-row>
         </v-container>
+        <v-container>
+            <router-view :enterpriseName="this.name"></router-view>
+        </v-container>
     </div>
 </template>
 
@@ -25,15 +28,15 @@
         props: ['id'],
         computed: {
             challanLink() {
-                return this.$route.path + '/' + this.id + '/make-chalan';
+                return '/enterprises/c1/make-challans';
             },
             pricePerLoad() {
                 return this.selectedEnterprise.pricePerLoad
             },
-            name () {
+            name() {
                 return this.selectedEnterprise.name
             },
-            address () {
+            address() {
                 return this.selectedEnterprise.address
             },
 

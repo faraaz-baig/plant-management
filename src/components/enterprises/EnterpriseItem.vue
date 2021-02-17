@@ -13,7 +13,7 @@
                             <v-spacer></v-spacer>
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on: tooltip }">
-                                    <v-btn :to="MakeChallanLink" fab v-bind="attrs" v-on="{ ...tooltip, ...menu }" small class="primary"><v-icon>mdi-plus</v-icon></v-btn>
+                                    <v-btn :to="MakeChallanLink" fab v-on="{ ...tooltip }" small class="primary"><v-icon>mdi-plus</v-icon></v-btn>
                                 </template>
                                 <span>Add New Chalan</span>
                             </v-tooltip>

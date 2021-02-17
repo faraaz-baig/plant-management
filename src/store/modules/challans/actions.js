@@ -1,7 +1,7 @@
 export default {
     makeChallan (context, payload) {
         const newChallan ={
-            id: new Date().toISOStrinf(),
+            id: new Date().toISOString(),
             enterpriseId: payload.enterpriseId,
             plantName: payload.plantName,
             plateNumber: payload.plateNumber,

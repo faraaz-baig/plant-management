@@ -1,6 +1,12 @@
 <template>
     <div>
-        <v-form ref="form" lazy-validation>
+       <v-container class="my-8">
+          <v-col cols="10" class="mx-auto">
+            <v-row justify="center" class="mb-8 headline text-h5 font-weight-bold">
+              Make a Challan for {{ enterpriseName }} 
+            </v-row>
+              <v-card outlined color="#EEEEEE" class="pa-7">
+                <v-form ref="form" lazy-validation>
             <v-text-field
             v-model="plantName"
             label="plant Name*"
@@ -54,11 +60,15 @@
                 Submit
                 </v-btn>
         </v-form>
+              </v-card>
+          </v-col>
+       </v-container>
     </div>
 </template>
 
 <script>
     export default {
+      props: ['enterpriseName'],
       data: () => ({
       dialog: false,
       plantName: '',

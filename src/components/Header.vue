@@ -43,7 +43,7 @@
     selectedItem: 1,
     links: [
       { text: 'All Enterprises', icon: 'mdi-domain', route: '/' },
-      { text: 'Chalans', icon: 'mdi-notebook', route: '/challans' },
+      { text: 'Challans', icon: 'mdi-notebook', route: '/challans' },
       { text: 'Sign Out', icon: 'mdi-exit-to-app', route: '/' },
     ],
   }),
