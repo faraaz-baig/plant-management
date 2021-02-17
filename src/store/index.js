@@ -2,23 +2,16 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import enterprisesModule from './modules/enterprises/index'
 import challansModule from './modules/challans/index'
+import authModule from './modules/auth/index'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
     enterprises: enterprisesModule,
-    challans: challansModule
+    challans: challansModule,
+    auth: authModule
   },
-  state() {
-    return {
-      userId: 'c6'
-    }
-  },
-  getters: {
-    userId(state) {
-      return state.userId;
-    }
-  }
 })
 
 export default store

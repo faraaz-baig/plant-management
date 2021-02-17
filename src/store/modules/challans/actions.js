@@ -25,7 +25,8 @@ export default {
     },
     async fetchChallans(context) {
         const enterpriseId = context.rootGetters.userId
-        const response = await fetch(`https://chalan-management-default-rtdb.europe-west1.firebasedatabase.app/challans/${enterpriseId}.json`)
+        const token = context.rootGetters.token
+        const response = await fetch(`https://chalan-management-default-rtdb.europe-west1.firebasedatabase.app/challans/${enterpriseId}.json?auth=` + token)
         const responseData = await response.json();
 
         if (!response.ok) {

@@ -20,12 +20,36 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item-group v-model="selectedItem" class="my-4">
-          <v-list-item v-for="(link, i) in links" :key="i" router :to="link.route">
+          <v-list-item router to="/">
             <v-list-item-action>
-              <v-icon>{{ link.icon }}</v-icon>
+              <v-icon>mdi-domain</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ link.text }}</v-list-item-title>
+              <v-list-item-title>All Enterprises</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item v-if="isLoggedIn" router to="/challans">
+            <v-list-item-action>
+              <v-icon>mdi-notebook</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Challans</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="logout" router v-if="isLoggedIn" to="/">
+            <v-list-item-action>
+              <v-icon>mdi-exit-to-app</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Sign Out</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item router v-if="!isLoggedIn" to="/auth">
+            <v-list-item-action>
+              <v-icon>mdi-account-arrow-right</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Login</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -47,12 +71,17 @@
   data: () => ({
     drawer: true,
     selectedItem: 1,
-    links: [
-      { text: 'All Enterprises', icon: 'mdi-domain', route: '/' },
-      { text: 'Challans', icon: 'mdi-notebook', route: '/challans' },
-      { text: 'Sign Out', icon: 'mdi-exit-to-app', route: '/' },
-    ],
   }),
+  computed: {
+    isLoggedIn(){
+      return this.$store.getters.isAuthenticated
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>
 
