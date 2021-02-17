@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-container>
-            <v-row align="center">
+        <v-container class="mt-10">
+            <v-row>
                 <v-col cols="10" class="mx-auto">
                     <v-card outlined class="pa-4" color="#EEEEEE">
                         <v-card-title class="headline text-h5 font-weight-bold">
@@ -28,7 +28,7 @@
         props: ['id'],
         computed: {
             challanLink() {
-                return '/enterprises/c1/make-challans';
+                return this.$route.path + '/' + 'make-challans';
             },
             pricePerLoad() {
                 return this.selectedEnterprise.pricePerLoad

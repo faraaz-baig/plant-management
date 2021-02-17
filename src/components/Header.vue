@@ -30,6 +30,12 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
+       <template v-slot:append>
+         <v-divider></v-divider>
+        <v-container>
+          <v-row class="pa-2 font-weight-light text-caption white--text" justify="center">Version 0.1.1</v-row>
+        </v-container>
+      </template>
     </v-navigation-drawer>
 
   </nav>
