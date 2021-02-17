@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import enterprisesModule from './modules/enterprises/index'
-
+import challansModule from './modules/challans/index'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    enterprises: enterprisesModule
+    enterprises: enterprisesModule,
+    challans: challansModule
   },
   state() {
     return {
