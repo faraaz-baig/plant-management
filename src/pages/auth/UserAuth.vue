@@ -11,6 +11,7 @@
                             <v-text-field v-model.trim="password" type="password" label="password" required></v-text-field>
                             <v-card-text class="red--text" v-if="!formIsValid" >please enter valid email and password</v-card-text>
                             <v-card-text class="red--text" v-else-if="error" >Please check your email and password</v-card-text>
+                            <v-card-text class="red--text" v-else-if="signupError" >Account already registered</v-card-text>
                             <v-btn :loading="this.isLoading" color="primary" @click="submitForm" class="my-6">{{ submitButtonCaption }}</v-btn>
                             <v-btn text color="primary" class="my-6 mx-4" @click="switchAuthMode">{{ switchModeButtonCaption }}</v-btn>
                         </v-form>
@@ -31,7 +32,8 @@ export default {
             formIsValid: true,
             mode: 'Login',
             isLoading: false,
-            error: false
+            error: false,
+            signupError: false
         }
     },
     computed: {
@@ -68,20 +70,26 @@ export default {
                    email: this.email,
                    password: this.password
                })
-           } else {
+            } 
+           
+           else {
                 await this.$store.dispatch('signup', {
                    email: this.email,
                    password: this.password
                })
-           } 
+            } 
             const redirectUrl = '/' + (this.$route.query.redirect || 'enterprises')
             this.$router.replace(redirectUrl)
-            } catch(error) {
-                this.error = true
-            }
 
+            } catch (error) {
+                if (this.mode == 'Signup') {
+                    this.signupError = true
+                } else {
+                    this.error = true
+                }
+            }
            this.isLoading = false
-       },
+        },
        switchAuthMode() {
            if (this.mode === 'Login') {
                this.mode = 'Signup'
