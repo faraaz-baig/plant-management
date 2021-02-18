@@ -68,7 +68,7 @@
             label="plant Name*"
             :rules="nameRules"
             required
-            :value="plateName"
+            :value="plantName"
             class="mb-3"
             ></v-text-field>
 
