@@ -52,17 +52,79 @@
                 class="mb-4"
                 ></v-text-field>
 
-                <v-btn
-                color="primary"
-                @click="submit()"
-                :loading="loading"
-                >
-                Submit
-                </v-btn>
-        </v-form>
+                <div>
+                  <v-dialog v-model="dialog" width="800">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn class="primary" v-bind="attrs" v-on="on">Submit</v-btn>
+                    </template>
+
+                    <v-card>
+                      <v-card-title class="headline grey lighten-2">Please Confirm Chalan Details</v-card-title>
+                       <v-card-subtitle class="subtitle grey lighten-2">You can't change, edit or delete this challan after submitting</v-card-subtitle>
+                        <v-card-text>
+                          <v-form ref="form" lazy-validation>
+            <v-text-field
+            v-model="plantName"
+            label="plant Name*"
+            :rules="nameRules"
+            required
+            :value="plateName"
+            class="mb-3"
+            ></v-text-field>
+
+            <v-menu
+                v-model="menu2"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                min-width="auto"
+            >
+            <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                v-model="date"
+                label="Date*"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+                ></v-text-field>
+                </template>
+                <v-date-picker
+                v-model="date"
+                @input="menu2 = false"
+                ></v-date-picker>
+            </v-menu>
+
+                <v-text-field
+                v-model="trips"
+                label="Number of trips*"
+                :rules="numRules"
+                :value="trips"
+                required
+                ></v-text-field>
+
+                <v-text-field
+                v-model="plateNumber"
+                :rules="plateRules"
+                label="Plate number*"
+                :value="plateNumber"
+                required
+                class="mb-4"
+                ></v-text-field>
+                          </v-form>
+                        </v-card-text>
+                        <v-divider></v-divider>
+                          <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <v-btn color="primary" @click="submit">submit</v-btn>
+                        </v-card-actions>
+                      </v-card>
+                  </v-dialog>
+                </div>
+                </v-form>
               </v-card>
           </v-col>
        </v-container>
+       
     </div>
 </template>
 
