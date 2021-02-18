@@ -15,6 +15,14 @@
             class="mb-3"
             ></v-text-field>
 
+            <v-text-field
+            v-model="material"
+            label="Material*"
+            :rules="materialRules"
+            required
+            class="mb-3"
+            ></v-text-field>
+
             <v-menu
                 v-model="menu2"
                 :close-on-content-click="false"
@@ -69,6 +77,15 @@
             :rules="nameRules"
             required
             :value="plantName"
+            class="mb-3"
+            ></v-text-field>
+
+            <v-text-field
+            v-model="material"
+            label="Material*"
+            :rules="materialRules"
+            required
+            :value="material"
             class="mb-3"
             ></v-text-field>
 
@@ -136,12 +153,18 @@
       plantName: '',
       trips: '',
       plateNumber: '',
+      material: '',
       date: new Date().toISOString().substr(0, 10),
       menu2: false,
       nameRules: [
         v => !!v || 'Please Enter plant Name',
         v => v.length > 1 || 'Enter Valid plant Name',
         v => isNaN(v) || 'Enter A Valid plant Name'
+      ],
+      materialRules: [
+        v => !!v || 'Please Enter Material Name',
+        v => v.length > 1 || 'Enter Valid Material Name',
+        v => isNaN(v) || 'Enter A Valid Material Name'
       ],
       numRules: [
         v => !!v || 'Please Enter Number Of Trips',
@@ -163,6 +186,7 @@
             plateNumber: this.plateNumber,
             trips: this.trips,
             date: this.date,
+            material: this.material,
             enterpriseId: this.$route.params.id
           }
           this.$store.dispatch('challans/makeChallan', chalan)

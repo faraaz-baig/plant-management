@@ -4,14 +4,15 @@
           <v-row xs12 class="pa-6" justify="space-between" >
             <v-flex class="ml-2">
               <!--<div class="caption grey--text">Chalan ID</div>-->
-              <div class="font-weight-bold text-h6 blue-grey--text">{{ id }}</div>
+              <div class="font-weight-bold text-h6 blue-grey--text">{{ plantname }}</div>
+              <div class="caption grey--text">{{ id }}</div>
             </v-flex>
           </v-row>
         </v-layout>
         <v-layout row wrap>
           <v-flex xs6 sm6 md3 class="pa-6 text-left">
-            <div class="caption grey--text">Plant Name</div>
-            <div>{{ plantname }}</div>
+            <div class="caption grey--text">Material</div>
+            <div>{{ material }}</div>
           </v-flex>
           <v-flex xs6 sm6 md3 class="pa-6 text-right text-sm-right text-md-center">
             <div class="caption grey--text">Date</div>
@@ -31,6 +32,6 @@
 
 <script>
 export default {
-    props: ['platenumber', 'date', 'trips', 'plantname', 'id'],
+    props: ['platenumber', 'date', 'trips', 'plantname', 'id', 'material'],
 }
 </script>
