@@ -4,7 +4,7 @@
             <v-row>
                 <v-col cols="10" class="mx-auto">
                     <v-row justify="end" class="pa-4">
-                        <v-btn class="primary" v-if="!isLoggedIn" to="/auth?redirect=register">Login as enterprise</v-btn>
+                        <v-btn class="primary" v-if="!isLoggedIn" to="/auth?redirect=register">Register Your enterprise</v-btn>
                         <v-btn v-if="isLoggedIn && !isEnterprise && !isLoading" class="primary" to="/register"><v-icon left>mdi-plus</v-icon> Add your enterprise</v-btn>
                     </v-row>
                 </v-col>

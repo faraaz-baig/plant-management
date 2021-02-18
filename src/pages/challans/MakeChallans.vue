@@ -63,7 +63,7 @@
                 <div>
                   <v-dialog v-model="dialog" width="800">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-btn class="primary" v-bind="attrs" v-on="on">Submit</v-btn>
+                      <v-btn class="primary" v-bind="attrs" v-on="on">Confirm</v-btn>
                     </template>
 
                     <v-card>
