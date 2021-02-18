@@ -67,17 +67,17 @@ export default {
       token;
     const res = await fetch(jsonUrl);
     const json = await res.json();
-    let converter = require('json-2-csv');
+    let converter = require("json-2-csv");
     converter.json2csv([json], (_, csv) => {
-        const blob = new Blob([csv], {type: 'text/csv'})
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.setAttribute('hidden', '')
-        a.setAttribute('href', url)
-        a.setAttribute('download', 'download.csv')
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
-    })
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.setAttribute("hidden", "");
+      a.setAttribute("href", url);
+      a.setAttribute("download", "download.csv");
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
   },
 };

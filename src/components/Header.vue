@@ -1,8 +1,13 @@
 <template>
   <nav>
     <v-app-bar app flat>
-      <v-app-bar-nav-icon @click="drawer = !drawer" class="hidden-lg-and-up"></v-app-bar-nav-icon>
-      <v-toolbar-title class="text-uppercase hidden-lg-and-up grey--text mx-auto">
+      <v-app-bar-nav-icon
+        @click="drawer = !drawer"
+        class="hidden-lg-and-up"
+      ></v-app-bar-nav-icon>
+      <v-toolbar-title
+        class="text-uppercase hidden-lg-and-up grey--text mx-auto"
+      >
         <span>Sumedh</span>
         <span class="font-weight-light">Frieght</span>
       </v-toolbar-title>
@@ -54,34 +59,36 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-       <template v-slot:append>
-         <v-divider></v-divider>
+      <template v-slot:append>
+        <v-divider></v-divider>
         <v-container>
-          <v-row class="pa-2 font-weight-light text-caption white--text" justify="center">Version 0.1.1</v-row>
+          <v-row
+            class="pa-2 font-weight-light text-caption white--text"
+            justify="center"
+            >Version 0.1.1</v-row
+          >
         </v-container>
       </template>
     </v-navigation-drawer>
-
   </nav>
 </template>
 
 <script>
-  export default {
+export default {
   name: "navbar",
   data: () => ({
     drawer: true,
     selectedItem: 1,
   }),
   computed: {
-    isLoggedIn(){
-      return this.$store.getters.isAuthenticated
-    }
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    },
   },
   methods: {
     logout() {
-      this.$store.dispatch('logout')
-    }
-  }
-}
+      this.$store.dispatch("logout");
+    },
+  },
+};
 </script>
-
