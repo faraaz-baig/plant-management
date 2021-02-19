@@ -9,12 +9,11 @@
 
 <script>
 import Header from "@/components/Header.vue";
+import _ from "lodash";
+
 export default {
   components: {
     Header,
-  },
-  created() {
-    this.$store.dispatch("tryLogin");
   },
 };
 </script>
