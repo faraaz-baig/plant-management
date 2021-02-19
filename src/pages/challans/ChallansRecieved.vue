@@ -10,6 +10,7 @@
         ></v-row
       >
     </v-container>
+    Total: {{totalPayable}}
     <v-container v-if="isLoading">
       <v-row>
         <v-col cols="10" class="mx-auto">
@@ -64,6 +65,12 @@ export default {
     hasChallans() {
       return this.$store.getters["challans/hasChallans"];
     },
+    totalPayable() {
+      let sum = 0;
+      this.recievedChallans.forEach(c => sum += parseInt(c.trips));
+      const ppl = this.$store.state.enterprises.enterprises.filter(e => e.id === this.$store.state.auth.userId)[0].pricePerLoad;
+      return ppl*sum;
+    }
   },
   methods: {
     async loadChallans() {
