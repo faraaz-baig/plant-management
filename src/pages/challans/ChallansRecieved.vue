@@ -1,15 +1,40 @@
 <template>
   <div>
-    <v-container class="my-7">
+    <v-container class="my-12">
+        <v-row justify="space-around">
+          <v-card dark width="300px" class="pa-5 green lighten-2">
+             <v-row justify="center">
+              <v-card-title class="text-h5">Total Amount</v-card-title>
+            </v-row>
+            <v-row justify="center">
+              <v-card-title class="font-weight-bold text-h4">Rs {{ totalPayable }}</v-card-title>
+            </v-row>
+          </v-card>
+          <v-card dark width="300px" class="pa-5 green lighten-2">
+             <v-row justify="center">
+              <v-card-title class="text-h5">Total Challans</v-card-title>
+            </v-row>
+            <v-row justify="center">
+              <v-card-title class="font-weight-bold text-h4">{{ recievedChallans.length }}</v-card-title>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-container>
+    <v-container class="mb-7 mt-16">
       <v-row justify="center" class="font-weight-bold text-h5"
         >Challans Made For Your Enterprise</v-row
       >
-      <v-row justify="center"
-        ><v-btn @click="makeCsv" class="primary my-6 mr-4"
-          >download csv</v-btn
-        ></v-row
-      >
     </v-container>
+    <v-container class="mb-3 px-4">
+        <v-btn small text color="grey" class="mr-4" @click="sortBy(trips)">
+          <v-icon left small>mdi-sort-ascending</v-icon>
+          <span class="caption text-capitalize">By Number Of Trips</span>
+        </v-btn>
+        <v-btn small text color="grey" @click="sortBy(date)">
+          <v-icon left small>mdi-sort-calendar-ascending</v-icon>
+          <span class="caption text-capitalize">Date</span>
+        </v-btn>
+      </v-container>
     <v-container v-if="isLoading">
       <v-row>
         <v-col cols="10" class="mx-auto">
@@ -31,6 +56,7 @@
         :date="challan.date"
         :trips="challan.trips"
         :material="challan.material"
+        
       ></challan-item>
     </v-container>
     <v-container v-else-if="error" class="my-16 font-weight-bold text-h5">
@@ -64,6 +90,16 @@ export default {
     hasChallans() {
       return this.$store.getters["challans/hasChallans"];
     },
+    numberOfChallans() {
+      return this.$store.getters["challans/numberOfChallans"];
+    },
+    totalPayable() {
+      let sum = 0;
+      this.recievedChallans.forEach(c => sum += parseInt(c.trips));
+      const ppl = this.$store.state.enterprises.enterprises.filter(e => e.id === this.$store.state.auth.userId)[0].pricePerLoad;
+      return ppl*sum;
+    }
+    
   },
   methods: {
     async loadChallans() {
@@ -75,14 +111,8 @@ export default {
       }
       this.isLoading = false;
     },
-    async makeCsv() {
-      this.isLoading = true;
-      try {
-        await this.$store.dispatch("challans/getReport");
-      } catch (error) {
-        this.error = true;
-      }
-      this.isLoading = false;
+    sortBy(prop) {
+      this.recievedChallans.sort((a,b) => b[prop] - a[prop])
     },
   },
   created() {
@@ -90,5 +120,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

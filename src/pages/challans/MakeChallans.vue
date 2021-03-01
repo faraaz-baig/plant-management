@@ -160,6 +160,7 @@ export default {
     trips: "",
     plateNumber: "",
     material: "",
+    costPerTrip: "",
     date: new Date().toISOString().substr(0, 10),
     menu2: false,
     nameRules: [

@@ -5,4 +5,7 @@ export default {
   setEnterprises(state, payload) {
     state.enterprises = payload;
   },
+  setFetchTimestamp(state) {
+    state.lastFetch = new Date().getTime();
+  }
 };

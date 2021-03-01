@@ -10,7 +10,7 @@ export default {
     const token = context.rootGetters.token;
 
     const response = await fetch(
-      `https://chalan-management-default-rtdb.europe-west1.firebasedatabase.app/enterprises/${userId}.json?auth=` +
+      `${process.env.FIREBASE_DB_LINK}/enterprises/${userId}.json?auth=` +
         token,
       {
         method: "PUT",
@@ -31,7 +31,7 @@ export default {
   },
   async loadEnterprises(context) {
     const response = await fetch(
-      `https://chalan-management-default-rtdb.europe-west1.firebasedatabase.app/enterprises/.json`
+      `${process.env.FIREBASE_DB_LINK}/enterprises/.json`
     );
     const responseData = await response.json();
 
@@ -52,5 +52,6 @@ export default {
       enterprises.push(enterprise);
     }
     context.commit("setEnterprises", enterprises);
+    context.commit('setFetchTimestamp');
   },
 };

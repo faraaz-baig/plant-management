@@ -9,7 +9,7 @@ export default {
       material: payload.material,
     };
     const response = await fetch(
-      `https://chalan-management-default-rtdb.europe-west1.firebasedatabase.app/challans/${payload.enterpriseId}.json`,
+      `https://chalan-management-9cacd-default-rtdb.europe-west1.firebasedatabase.app/challans/${payload.enterpriseId}.json`,
       {
         method: "POST",
         body: JSON.stringify(newChallan),
@@ -31,7 +31,7 @@ export default {
     const enterpriseId = context.rootGetters.userId;
     const token = context.rootGetters.token;
     const response = await fetch(
-      `https://chalan-management-default-rtdb.europe-west1.firebasedatabase.app/challans/${enterpriseId}.json?auth=` +
+      `https://chalan-management-9cacd-default-rtdb.europe-west1.firebasedatabase.app/challans/${enterpriseId}.json?auth=` +
         token
     );
     const responseData = await response.json();
@@ -58,26 +58,5 @@ export default {
       challans.push(challan);
     }
     context.commit("setChallans", challans);
-  },
-  async getReport(context) {
-    const enterpriseId = context.rootGetters.userId;
-    const token = context.rootGetters.token;
-    const jsonUrl =
-      `https://chalan-management-default-rtdb.europe-west1.firebasedatabase.app/challans/${enterpriseId}.json?auth=` +
-      token;
-    const res = await fetch(jsonUrl);
-    const json = await res.json();
-    let converter = require("json-2-csv");
-    converter.json2csv([json], (_, csv) => {
-      const blob = new Blob([csv], { type: "text/csv" });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.setAttribute("hidden", "");
-      a.setAttribute("href", url);
-      a.setAttribute("download", "download.csv");
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    });
   },
 };

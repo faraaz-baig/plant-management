@@ -4,6 +4,7 @@ import getters from "./getters";
 
 export default {
   namespaced: true,
+  lastFetch: null,
   state() {
     return {
       enterprises: [],

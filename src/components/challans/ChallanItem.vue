@@ -35,5 +35,10 @@
 <script>
 export default {
   props: ["platenumber", "date", "trips", "plantname", "id", "material"],
+  computed: {
+    recievedChallans() {
+      return this.$store.getters["challans/challans"];
+    },
+  }
 };
 </script>
